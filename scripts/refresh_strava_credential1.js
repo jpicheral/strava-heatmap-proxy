@@ -15,19 +15,20 @@ const STRAVA_PASSWORD = process.env.STRAVA_PASSWORD;
   const getCookieString = (cookies) =>
     cookies.map((cookie) => `${cookie.name}=${cookie.value}`).join("; ");
 
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch();
   const page = await browser.newPage();
 
   try {
     // Étape 1 : Ouvrir la page de login
-    await page.goto("https://www.strava.com/login");
+    await page.goto("https://www.strava.com/login", { waitUntil: "networkidle" })
 
     // Étape 2 : Remplir et soumettre le formulaire
+    await page.waitForSelector('input[name="email"]', { timeout: 60000 });
     await page.click('button[data-cy="accept-cookies"]');    
     await page.fill('input[name="email"]', STRAVA_EMAIL);
     await page.fill('input[name="password"]', STRAVA_PASSWORD);
     await page.click('button[type="submit"]');
-    await page.waitForNavigation({ waitUntil: "networkidle" });
+    await page.waitForNavigation({ waitUntil: "networkidle", timeout: 60000 });
 
     // Étape 3 : Extraire les cookies de la session
     const sessionCookies = await page.context().cookies();
