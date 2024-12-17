@@ -23,6 +23,7 @@ const STRAVA_PASSWORD = process.env.STRAVA_PASSWORD;
     await page.goto("https://www.strava.com/login");
 
     // Étape 2 : Remplir et soumettre le formulaire
+    await page.click('button[data-cy="accept-cookies"]');    
     await page.fill('input[name="email"]', STRAVA_EMAIL);
     await page.fill('input[name="password"]', STRAVA_PASSWORD);
     await page.click('button[type="submit"]');
