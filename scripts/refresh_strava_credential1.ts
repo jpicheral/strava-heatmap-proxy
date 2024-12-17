@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run --allow-net --allow-env --unstable
 
-import { chromium } from "https://deno.land/x/playwright/mod.ts";
+import { chromium } from "https://cdn.skypack.dev/playwright";
 
 const STRAVA_EMAIL = Deno.env.get("STRAVA_EMAIL")!;
 const STRAVA_PASSWORD = Deno.env.get("STRAVA_PASSWORD")!;
