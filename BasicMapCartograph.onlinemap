@@ -3,7 +3,7 @@
 	"folders":[
 		{
 			"name": {
-				"default": "NaKarte Strava Heatmap"
+				"default": "Strava"
 			},
 			"description": {
 				"default": ""
@@ -15,7 +15,7 @@
 	"maps": [
 		{
 			"name": {
-				"default": "Strava Ride Heatmap"
+				"default": "Strava Ride"
 			},
 			"description": {
 				"default": ""
@@ -35,7 +35,32 @@
 					"value": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
 				}
 			],
-			"unique_id": "Strava Ride Heatmap",
+			"unique_id": "Strava Ride",
+			"folder_key":"strava"
+		},
+		{
+			"name": {
+				"default": "Strava All"
+			},
+			"description": {
+				"default": ""
+			},
+			"type": "onlinemap",
+			"url": "https://proxy.nakarte.me/https/heatmap-external-b.strava.com/tiles-auth/all/red/{z}/{x}/{y}.png?px=256",
+			"attribution": "Â© Strava.com",
+			"defaultLatitude": 51.47,
+			"defaultLongitude": 0,
+			"defaultZoom": 1,
+			"minZoom": 0,
+			"maxZoom": 22,
+			"projection": "EPSG_4326",
+			"headers": [
+				{
+					"key": "User-Agent",
+					"value": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
+				}
+			],
+			"unique_id": "Strava All",
 			"folder_key":"strava"
 		}
 	]
