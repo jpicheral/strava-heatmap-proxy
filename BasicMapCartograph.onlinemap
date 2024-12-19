@@ -1,0 +1,39 @@
+{
+    "version": 3,
+    "folders": ["name": {
+				"default": "Autriche"
+			},
+			"description": {
+				"default": ""
+			},
+			"folder_key":"",
+			"key":"Autriche"],
+    "maps": [
+        {
+            "name": {
+                "default": "Autriche"
+            },
+            "description": {
+                "default": "Carte"
+            },
+            "type": "onlinemap",
+            "url": "https://maps.bev.gv.at/tiles/karte/{z}/{x}/{y}.png",
+            "attribution": "\u00a9",
+            "defaultLatitude": 51.47,
+            "defaultLongitude": 0,
+            "defaultZoom": 1,
+            "minZoom": 0,
+            "maxZoom": 22,
+            "enable_tile_download": true,
+            "projection": "EPSG:4326",
+            "unique_id": "https://maps.bev.gv.at/tiles/karte",
+            "folder_key": "",
+            "headers": [
+                {
+                    "key": "User-Agent",
+                    "value": "Mozilla5"
+                }
+            ]
+        }
+    ]
+}
