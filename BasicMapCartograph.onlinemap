@@ -9,13 +9,13 @@
 				"default": ""
 			},
 			"folder_key":"",
-			"key":"me.nakarte.strava"
+			"key":"strava"
 		}
 	],
 	"maps": [
 		{
 			"name": {
-				"default": "NaKarte Strava Heatmap"
+				"default": "Strava Ride Heatmap"
 			},
 			"description": {
 				"default": ""
@@ -35,8 +35,8 @@
 					"value": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
 				}
 			],
-			"unique_id": "me.nakarte.strava.heatmap",
-			"folder_key":"me.nakarte.strava"
+			"unique_id": "Strava Ride Heatmap",
+			"folder_key":"strava"
 		}
 	]
 }
