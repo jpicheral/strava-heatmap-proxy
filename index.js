@@ -80,7 +80,7 @@ async function handleTileProxyRequest(request) {
     new RegExp("(personal|globalheat)/(\\w+)/(\\w+)/(\\d+)/(\\d+)/(\\d+)(@2x)?(&px=256)?.png")
   );
   if (match === null) {
-    return new Response("invalid url, expected: /kind/color/activity/z/x/y.png", {
+    return new Response("!!! invalid URL "+url.pathname + " expected: /kind/color/activity/z/x/y.png", {
       status: 400,
     });
   }
