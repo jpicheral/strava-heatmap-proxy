@@ -66,9 +66,10 @@ const PERSONAL_MAP_URL =
   "?filter_type={activity}&include_everyone=true" +
   "&include_followers_only=true&respect_privacy_zones=true{res256}";
 
+//https://content-a.strava.com/identified/globalheat/sport_TrailRun/mobileblue/10/520/352.png?v=19
 const GLOBAL_MAP_URL =
-  "https://heatmap-external-c.strava.com/" +
-      "tiles-auth/{activity}/{color}/{z}/{x}/{y}{res}.png?v=19{res256}";
+  "https://content-a.strava.com/identified/globalheat/" +
+      "{activity}/{color}/{z}/{x}/{y}{res}.png?v=19{res256}";
   // "tiles-auth/{activity}/{color}/{z}/{x}/{y}{res}.png?v=19";
 
 // Proxy requests from /kind/color/activity/z/x/y(?@2x).png to baseUrl
