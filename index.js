@@ -1,4 +1,4 @@
-const Router = require("./router");
+tconst Router = require("./router");
 
 // The Cloudflare worker runtime populates these globals.
 //
@@ -77,7 +77,7 @@ async function handleTileProxyRequest(request) {
   const url = new URL(request.url);
   
   const match = url.pathname.match(
-    new RegExp("(personal|global)/(\\w+)/(\\w+)/(\\d+)/(\\d+)/(\\d+)(@2x)?(&px=256)?.png")
+    new RegExp("(personal|globalheat)/(\\w+)/(\\w+)/(\\d+)/(\\d+)/(\\d+)(@2x)?(&px=256)?.png")
   );
   if (match === null) {
     return new Response("invalid url, expected: /kind/color/activity/z/x/y.png", {
