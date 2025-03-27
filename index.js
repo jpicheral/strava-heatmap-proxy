@@ -22,7 +22,7 @@ async function handleRequest(event) {
 
     if (!response) {
       const r = new Router();
-      r.get("/(personal|globalheat)/.*", (req) => handleTileProxyRequest(req));
+      r.get("/(personal|global)/.*", (req) => handleTileProxyRequest(req));
       r.get("/", () => handleIndexRequest());
 
       response = await r.route(event.request);
@@ -43,9 +43,9 @@ async function handleRequest(event) {
 function handleIndexRequest() {
   return new Response(`\
 Global Heatmap
-  for 512px tiles (default) : /globalheat/:color/:activity/{z}/{x}/{y}.png
-  for 256px tiles : /globalheat/:color/:activity/{z}/{x}/{y}&px=256.png
-  for 1024px tiles : /globalheat/:color/:activity/{z}/{x}/{y}@2x.png
+  for 512px tiles (default) : /global/:color/:activity/{z}/{x}/{y}.png
+  for 256px tiles : /global/:color/:activity/{z}/{x}/{y}&px=256.png
+  for 1024px tiles : /global/:color/:activity/{z}/{x}/{y}@2x.png
   
   color choices: mobileblue, orange, hot, blue, bluered, purple, gray
   activity choices : all, ride, winter, run, water
@@ -77,7 +77,7 @@ async function handleTileProxyRequest(request) {
   const url = new URL(request.url);
   
   const match = url.pathname.match(
-    new RegExp("(personal|globalheat)/(\\w+)/(\\w+)/(\\d+)/(\\d+)/(\\d+)(@2x)?(&px=256)?.png")
+    new RegExp("(personal|global)/(\\w+)/(\\w+)/(\\d+)/(\\d+)/(\\d+)(@2x)?(&px=256)?.png")
   );
   if (match === null) {
     return new Response("!!! invalid URL "+url.pathname + " expected: /kind/color/activity/z/x/y.png", {
