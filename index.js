@@ -1,4 +1,4 @@
-tconst Router = require("./router");
+const Router = require("./router");
 
 // The Cloudflare worker runtime populates these globals.
 //
