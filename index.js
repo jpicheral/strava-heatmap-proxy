@@ -23,7 +23,7 @@ async function handleRequest(event) {
     if (!response) {
       const r = new Router();
       r.get("/(personal|global)/.*", (req) => handleTileProxyRequest(req));
-      r.get("/setcookies", (req) => handleSetCookies1(req));
+      r.post("/setcookies", (req) => handleSetCookies(req));
       r.get("/", () => handleIndexRequest());
 
       response = await r.route(event.request);
@@ -110,7 +110,6 @@ async function handleTileProxyRequest(request) {
 }
 
 async function handleSetCookies(request) {
-  if (request.method === 'POST') {
     const authHeader = request.headers.get('Authorization');
     if (!authHeader || authHeader !== `Bearer ${AUTH_TOKEN}`) {
       return new Response('Accès non autorisé', { status: 403 });
@@ -124,8 +123,6 @@ async function handleSetCookies(request) {
     await SAVE_COOKIES.put('secret_cookies', secret);
 
     return new Response('Cookies sauvegardés avec succès', { status: 200 });
-  }
-  return new Response('Méthode non autorisée', { status: 405 });
 }
 
 async function handleSetCookies1(request) {
