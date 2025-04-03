@@ -23,7 +23,7 @@ async function handleRequest(event) {
     if (!response) {
       const r = new Router();
       r.get("/(personal|global)/.*", (req) => handleTileProxyRequest(req));
-      r.get("/setcookies", (req) => handleSetCookies(req));
+      r.get("/setcookies", (req) => handleSetCookies1(req));
       r.get("/", () => handleIndexRequest());
 
       response = await r.route(event.request);
@@ -126,4 +126,8 @@ async function handleSetCookies(request) {
     return new Response('Cookies sauvegardés avec succès', { status: 200 });
   }
   return new Response('Méthode non autorisée', { status: 405 });
+}
+
+async function handleSetCookies1(request) {
+      return new Response('Bonjour', { status: 200 });
 }
