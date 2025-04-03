@@ -23,6 +23,7 @@ async function handleRequest(event) {
     if (!response) {
       const r = new Router();
       r.get("/(personal|global)/.*", (req) => handleTileProxyRequest(req));
+      r.get("/setcookies", (req) => handleSetCookies(req));
       r.get("/", () => handleIndexRequest());
 
       response = await r.route(event.request);
@@ -72,7 +73,6 @@ const GLOBAL_MAP_URL =
       "{activity}/{color}/{z}/{x}/{y}{res}.png?v=19{res256}";
   // "tiles-auth/{activity}/{color}/{z}/{x}/{y}{res}.png?v=19";
 
-// Proxy requests from /kind/color/activity/z/x/y(?@2x).png to baseUrl
 async function handleTileProxyRequest(request) {
   const url = new URL(request.url);
   
@@ -107,4 +107,23 @@ async function handleTileProxyRequest(request) {
   });
 
   return await fetch(proxiedRequest);
+}
+
+async function handleSetCookies(request) {
+  if (request.method === 'POST') {
+    const authHeader = request.headers.get('Authorization');
+    if (!authHeader || authHeader !== `Bearer ${AUTH_TOKEN}`) {
+      return new Response('Accès non autorisé', { status: 403 });
+    }
+
+    const { cookies } = await request.json();
+    await SAVE_COOKIES.put('cookies', cookies);
+
+    // Stocker les cookies dans un secret
+    const secret = STRAVA_COOKIES;
+    await SAVE_COOKIES.put('secret_cookies', secret);
+
+    return new Response('Cookies sauvegardés avec succès', { status: 200 });
+  }
+  return new Response('Méthode non autorisée', { status: 405 });
 }
