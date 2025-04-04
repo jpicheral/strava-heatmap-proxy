@@ -111,16 +111,13 @@ async function handleTileProxyRequest(request) {
 
 async function handleSetCookies(request) {
     const authHeader = request.headers.get('Authorization');
-    if (!authHeader || authHeader !== `Bearer ${AUTH_TOKEN}`) {
-      return new Response('Accès non autorisé', { status: 403 });
-    }
+//    if (!authHeader || authHeader !== `Bearer ${AUTH_TOKEN}`) {
+  //    return new Response('Accès non autorisé', { status: 403 });
+   // }
 
     const { cookies } = await request.json();
-    await SAVE_COOKIES.put('cookies', cookies);
+    await STRAVA_COOKIES.put('cookies', cookies);
 
-    // Stocker les cookies dans un secret
-    const secret = STRAVA_COOKIES;
-    await SAVE_COOKIES.put('secret_cookies', secret);
 
     return new Response('Cookies sauvegardés avec succès', { status: 200 });
 }
