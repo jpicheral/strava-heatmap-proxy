@@ -12,16 +12,12 @@ jobs:
     permissions:
       actions: read
       secrets: write
-
     steps:
       - uses: actions/checkout@v2
       - uses: denolib/setup-deno@v2
         with:
           deno-version: v1.x
-      - name: Fetch credentials
-        env:
-          STRAVA_EMAIL: ${{ secrets.STRAVA_EMAIL }}
-          STRAVA_PASSWORD: ${{ secrets.STRAVA_PASSWORD }}
+      - name: update credentials
         run: |
 	  echo "Valeur des cookies reçue: ${{ github.event.client_payload.cookies }}"
           echo "::add-mask::${STRAVA_COOKIES}"
