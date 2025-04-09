@@ -1,4 +1,4 @@
-name: Update Cloudflare Cookies
+name: mettre-a-jour-cookies-strava
 
 on:
   repository_dispatch:
