@@ -1,7 +1,7 @@
 name: mettre-a-jour-cookies-strava
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:{}
   
 jobs:
   update_cloudflare_secret:
