@@ -19,7 +19,7 @@ jobs:
       - name: update credentials
         run: |
           echo "Valeur des cookies reçue: ${{ github.event.inputs.cookies }}"
-          echo "::add-mask::${STRAVA_COOKIES}" 
+          echo "::add-mask::${{ github.event.inputs.cookies }}" 
           echo "STRAVA_COOKIES=${{ github.event.inputs.cookies }}" >> $GITHUB_ENV
       - name: Write Strava creds to Cloudflare
         uses: cloudflare/wrangler-action@1.2.0
