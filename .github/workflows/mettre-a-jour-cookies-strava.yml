@@ -2,6 +2,10 @@ name: mettre-a-jour-cookies-strava
 
 on:
   workflow_dispatch:
+    inputs:
+      cookies:
+        required: true
+        type: string
   
 jobs:
   update_cloudflare_secret:
@@ -14,7 +18,9 @@ jobs:
           deno-version: v1.x
       - name: update credentials
         run: |
-          echo "Valeur des cookies reçue: "
+          echo "Valeur des cookies reçue: ${{ github.event.inputs.cookies }}"
+          echo "::add-mask::${STRAVA_COOKIES}" 
+          echo "STRAVA_COOKIES=${{ github.event.inputs.cookies }}" >> $GITHUB_ENV
       - name: Write Strava creds to Cloudflare
         uses: cloudflare/wrangler-action@1.2.0
         with:
