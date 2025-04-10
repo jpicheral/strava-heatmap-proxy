@@ -1,8 +1,9 @@
+- name: Show event payload
+  run: echo '${{ toJSON(github.event) }}'
+  
 name: mettre-a-jour-cookies-strava
 
 on:
-  repository_dispatch:
-    types: [mettre-a-jour-cookies-strava] # Type d'événement constant
   workflow_dispatch: # Permet de déclencher manuellement si nécessaire
 
 jobs:
