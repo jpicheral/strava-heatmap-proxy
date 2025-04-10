@@ -1,11 +1,8 @@
-- name: Show event payload
-  run: echo '${{ toJSON(github.event) }}'
-  
 name: mettre-a-jour-cookies-strava
 
 on:
-  workflow_dispatch: # Permet de déclencher manuellement si nécessaire
-
+  workflow_dispatch:
+  
 jobs:
   update_cloudflare_secret:
     runs-on: ubuntu-latest
