@@ -16,8 +16,7 @@ jobs:
         with:
           deno-version: v1.x
       - name: update credentials
-        run: |
-	  echo "Valeur des cookies reçue: " #${{ github.event.client_payload.cookies }}"
+        run: echo "Valeur des cookies reçue: " #${{ github.event.client_payload.cookies }}"
        #   echo "::add-mask::${STRAVA_COOKIES}"
         #  echo "STRAVA_COOKIES=${{ github.event.client_payload.cookies }}" >> $GITHUB_ENV
 
