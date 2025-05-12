@@ -30,7 +30,7 @@ async function handleRequest(event) {
 
       if (Env.TILE_CACHE_SECS > 0 && response.status === 200) {
         response = new Response(response.body, response);
-        //response.headers.append("Access-Control-Allow-Origin", "*");
+        response.headers.append("Access-Control-Allow-Origin", "*");
         response.headers.append("Cache-Control", `s-maxage=${Env.TILE_CACHE_SECS}`);        
         event.waitUntil(caches.default.put(event.request.url, response.clone()));
       }
