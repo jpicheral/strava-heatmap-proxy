@@ -16,6 +16,22 @@ addEventListener("fetch", (event) => {
   event.respondWith(handleRequest(event));
 });
 
+export default {
+  async fetch(request, env) {
+    
+    // Debug : afficher les cookies reçus
+    return new Response(JSON.stringify({
+      cookies_length: env.strava_cookies?.length ?? 0,
+      cookies_preview: env.strava_cookies?.substring(0, 200) ?? "VIDE",
+      cookies_present: !!env.strava_cookies
+    }), {
+      headers: { "Content-Type": "application/json" }
+    })
+    
+  }
+}
+
+
 async function handleRequest(event) {
   try {
     let response = await caches.default.match(event.request.url);
