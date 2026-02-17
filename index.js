@@ -16,21 +16,6 @@ addEventListener("fetch", (event) => {
   event.respondWith(handleRequest(event));
 });
 
-export default {
-  async fetch(request, env) {
-    
-    // Debug : afficher les cookies reçus
-    return new Response(JSON.stringify({
-      cookies_length: env.strava_cookies?.length ?? 0,
-      cookies_preview: env.strava_cookies?.substring(0, 200) ?? "VIDE",
-      cookies_present: !!env.strava_cookies
-    }), {
-      headers: { "Content-Type": "application/json" }
-    })
-    
-  }
-}
-
 
 async function handleRequest(event) {
   try {
@@ -41,6 +26,7 @@ async function handleRequest(event) {
       r.get("/(personal|global)/.*", (req) => handleTileProxyRequest(req));
       r.post("/setcookies", (req) => handleSetCookies(req));
       r.get("/", () => handleIndexRequest());
+      r.get("/debug", () => handleDebug());
 
       response = await r.route(event.request);
 
@@ -56,6 +42,17 @@ async function handleRequest(event) {
   } catch (err) {
     return new Response(`err in request handler: ${err}`, { status: 500 });
   }
+}
+
+async function handleDebug() {
+  var cookies = Env.STRAVA_COOKIES;
+  return new Response(JSON.stringify({
+    cookies_present: cookies ? true : false,
+    cookies_length: cookies ? cookies.length : 0,
+    cookies_preview: cookies ? cookies.substring(0, 300) : "VIDE"
+  }), {
+    headers: { "Content-Type": "application/json" }
+  });
 }
 
 function handleIndexRequest() {
