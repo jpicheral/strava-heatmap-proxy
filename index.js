@@ -49,7 +49,7 @@ async function handleDebug() {
   return new Response(JSON.stringify({
     cookies_present: cookies ? true : false,
     cookies_length: cookies ? cookies.length : 0,
-    cookies_preview: cookies ? cookies : "VIDE"
+    cookies: cookies ? cookies : "VIDE"
   }), {
     headers: { "Content-Type": "application/json" }
   });
